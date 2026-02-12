@@ -1,7 +1,4 @@
-﻿using Domain.Models;
-using Domain.ValueObjects;
-
-namespace Infastructure.Data.Extensions;
+﻿namespace Infastructure.Data.Extensions;
 
 public static class InitialData
 {

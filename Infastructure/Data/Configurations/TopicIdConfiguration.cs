@@ -1,9 +1,4 @@
-﻿using Domain.Models;
-using Domain.ValueObjects;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace Infastructure.Data.Configurations;
+﻿namespace Infastructure.Data.Configurations;
 
 public class TopicIdConfiguration : IEntityTypeConfiguration<Topic>
 {
