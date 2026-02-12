@@ -1,11 +1,17 @@
+using Infastructure.Data.DataBaseContext;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 
-var app = builder.Build();
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    options.UseSqlite(builder.Configuration.GetConnectionString("SqliteConnection"));
+});
 
-app.MapControllers();
+var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
@@ -13,7 +19,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthorization();
+app.MapControllers();
 
 
 app.Run();
