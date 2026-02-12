@@ -1,0 +1,34 @@
+﻿using Infastructure.Data.DataBaseContext;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace Infastructure.Data.Extensions;
+
+public static class DatabaseExtensions
+{
+    public static async Task InitializeDatabaseAsync(this WebApplication app)
+    {
+        using IServiceScope scope = app.Services.CreateScope();
+        var dbContext = scope
+            .ServiceProvider
+            .GetRequiredService<ApplicationDbContext>();
+
+        await dbContext.Database.MigrateAsync();
+        await SeedData(dbContext);
+    }
+
+    private static async Task SeedData(ApplicationDbContext dbContext)
+    {
+        await SeedTopicAsync(dbContext);
+    }
+
+    private static async Task SeedTopicAsync(ApplicationDbContext dbContext)
+    {
+        if (!await dbContext.Topics.AnyAsync())
+        {
+            await dbContext.Topics.AddRangeAsync(InitialData.Topics);
+            await dbContext.SaveChangesAsync();
+        }
+    }
+}

@@ -11,10 +11,10 @@ public record Location
         Street = street;
     }
 
-    public static Location Of(string city, string street)
+    public static Location Of(string street, string city)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(city);
         ArgumentException.ThrowIfNullOrWhiteSpace(street);
+        ArgumentException.ThrowIfNullOrWhiteSpace(city);
         
         return new Location(city, street);
     }
