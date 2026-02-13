@@ -9,8 +9,8 @@ namespace Api.Controllers;
 public class TopicsController(ITopicService topicService) : ControllerBase
 {
     [HttpGet]
-    public async Task<ActionResult<List<Topic>>> GetTopics ()
+    public async Task<ActionResult<List<Topic>>> GetTopics(CancellationToken ct)
     {
-        return Ok(await topicService.GetTopicsAsync());
+        return Ok(await topicService.GetTopicsAsync(ct));
     }
 }

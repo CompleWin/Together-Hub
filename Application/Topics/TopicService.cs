@@ -7,11 +7,11 @@ namespace Application.Topics;
 public class TopicService(IApplicationDbContext dbContext, 
     ILogger<TopicService> logger) : ITopicService
 {
-    public async Task<List<Topic>> GetTopicsAsync()
+    public async Task<List<Topic>> GetTopicsAsync(CancellationToken ct)
     {
         var topics = await dbContext.Topics
             .AsNoTracking()
-            .ToListAsync();
+            .ToListAsync(ct);
         
         return topics;
     }
@@ -26,12 +26,12 @@ public class TopicService(IApplicationDbContext dbContext,
         throw new NotImplementedException();
     }
 
-    public Task<Topic> UpdateTopicAsync(TopicId id, Topic topicRequestDto)
+    public Task<Topic> UpdateTopicAsync(Guid id, Topic topicRequestDto)
     {
         throw new NotImplementedException();
     }
 
-    public Task DeleteTopicAsync(TopicId id)
+    public Task DeleteTopicAsync(Guid id)
     {
         throw new NotImplementedException();
     }
