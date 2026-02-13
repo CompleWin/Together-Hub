@@ -1,4 +1,5 @@
-﻿using Infastructure.Data.DataBaseContext;
+﻿using Application.Data.DataBaseContext;
+using Infastructure.Data.DataBaseContext;
 using Microsoft.Extensions.Configuration;
 
 namespace Infastructure;
@@ -15,6 +16,8 @@ public static class DependencyInjection
         {
             options.UseSqlite(connectionString);
         });
+        
+        services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
         
         return services;
     }

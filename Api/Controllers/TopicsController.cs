@@ -1,14 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Application.Topics;
+using Domain.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class TopicsController : ControllerBase
+public class TopicsController(ITopicService topicService) : ControllerBase
 {
     [HttpGet]
-    public async Task<IActionResult> Hello()
+    public async Task<ActionResult<List<Topic>>> GetTopics ()
     {
-        return await Task.FromResult(Ok(new {text = "Hello World"}));
+        return Ok(await topicService.GetTopicsAsync());
     }
 }
