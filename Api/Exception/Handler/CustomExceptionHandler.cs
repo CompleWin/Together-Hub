@@ -1,5 +1,4 @@
-﻿using Application.Exceptions;
-using Microsoft.AspNetCore.Diagnostics;
+﻿using Microsoft.AspNetCore.Diagnostics;
 
 namespace Api.Exception.Handler;
 

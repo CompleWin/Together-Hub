@@ -1,6 +1,4 @@
-﻿using Application.DtoModels;
-
-namespace Application.Topics;
+﻿namespace Application.Topics;
 
 public interface ITopicService
 {

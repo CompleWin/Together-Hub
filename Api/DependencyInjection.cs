@@ -7,6 +7,16 @@ public static class DependencyInjection
     public static IServiceCollection AddApiServices(this IServiceCollection services,
         IConfiguration configuration)
     {
+        services.AddCors(options =>
+        {
+            options.AddPolicy("react-policy", policy =>
+            {
+                policy.AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .WithOrigins("http://localhost:6969");
+            });
+        });
+        
         services.AddOpenApi();
         services.AddControllers();
         services.AddExceptionHandler<CustomExceptionHandler>();
@@ -15,6 +25,7 @@ public static class DependencyInjection
 
     public static WebApplication UseApiServices(this WebApplication app)
     {
+        app.UseCors("react-policy");
         app.UseExceptionHandler(options => {});
         app.UseHttpsRedirection();
         app.UseAuthorization();

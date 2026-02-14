@@ -1,5 +1,4 @@
-﻿using Application.Data.DataBaseContext;
-using Application.Topics;
+﻿using Application.Topics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
