@@ -24,5 +24,14 @@ public class TopicsController(ITopicService topicService) : ControllerBase
     {
         return Ok(await topicService.CreateTopicAsync(dto, ct));
     }
+
+    [HttpPut("{id}")]
+    public async Task<ActionResult<TopicResponseDto>> UpdateTopic(
+        Guid id, 
+        [FromBody] UpdateTopicRequestDto dto,
+        CancellationToken ct)
+    {
+        return Ok(await topicService.UpdateTopicAsync(id, dto, ct));
+    }
     
 }
