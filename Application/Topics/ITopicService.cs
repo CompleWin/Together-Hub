@@ -9,5 +9,4 @@ public interface ITopicService
     Task<Topic> CreateTopicAsync(CreateTopicRequestDto topicRequestDto, CancellationToken ct);
     Task<Topic> UpdateTopicAsync(Guid id, UpdateTopicRequestDto topicRequestDto, CancellationToken ct);
     Task DeleteTopicAsync(Guid id, CancellationToken ct);
-    
 }

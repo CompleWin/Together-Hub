@@ -1,4 +1,6 @@
-﻿namespace Api;
+﻿using Api.Exception.Handler;
+
+namespace Api;
 
 public static class DependencyInjection
 {
@@ -7,11 +9,13 @@ public static class DependencyInjection
     {
         services.AddOpenApi();
         services.AddControllers();
+        services.AddExceptionHandler<CustomExceptionHandler>();
         return services;
     }
 
     public static WebApplication UseApiServices(this WebApplication app)
     {
+        app.UseExceptionHandler(options => {});
         app.UseHttpsRedirection();
         app.UseAuthorization();
         app.MapControllers();

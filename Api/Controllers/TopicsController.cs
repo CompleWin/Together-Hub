@@ -1,7 +1,5 @@
 ﻿using Application.DtoModels;
 using Application.Topics;
-using Domain.Models;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
 
