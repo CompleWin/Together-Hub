@@ -33,5 +33,12 @@ public class TopicsController(ITopicService topicService) : ControllerBase
     {
         return Ok(await topicService.UpdateTopicAsync(id, dto, ct));
     }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> DeleteTopic(Guid id, CancellationToken ct)
+    {
+        await topicService.DeleteTopicAsync(id, ct);
+        return NoContent();
+    }
     
 }
