@@ -35,12 +35,23 @@ public class TopicService(
         return result.ToTopicResponseDto();
     }
 
-    public Task<Topic> CreateTopicAsync(CreateTopicRequestDto topicRequestDto, CancellationToken ct)
+    public async Task<TopicResponseDto> CreateTopicAsync(CreateTopicRequestDto createDto, CancellationToken ct)
     {
-        throw new NotImplementedException();
+        Topic newTopic = Topic.Create(
+            TopicId.Of(Guid.NewGuid()),
+            createDto.Title,
+            createDto.EventStart,
+            createDto.Summary,
+            createDto.TopicType,
+            Location.Of(createDto.Location.Street, createDto.Location.City)
+        );
+        
+        dbContext.Topics.Add(newTopic);
+        await dbContext.SaveChangesAsync(ct);
+        return newTopic.ToTopicResponseDto();
     }
 
-    public Task<Topic> UpdateTopicAsync(Guid id, UpdateTopicRequestDto topicRequestDto, CancellationToken ct)
+    public Task<TopicResponseDto> UpdateTopicAsync(Guid id, UpdateTopicRequestDto updateDto, CancellationToken ct)
     {
         throw new NotImplementedException();
     }
