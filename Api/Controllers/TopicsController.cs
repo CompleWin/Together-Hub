@@ -25,12 +25,13 @@ public class TopicsController(IMediator mediator) : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<TopicResponseDto>> UpdateTopic(
+    public async Task<IResult> UpdateTopic(
         Guid id, 
         [FromBody] UpdateTopicRequestDto dto,
         CancellationToken ct)
     {
-        return Ok();
+        var response = await mediator.Send(new UpdateTopicCommand(id, dto), ct);
+        return Results.Ok(response.Result);
     }
 
     [HttpDelete("{id}")]
