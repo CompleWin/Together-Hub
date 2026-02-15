@@ -13,7 +13,7 @@ public static class DependencyInjection
             {
                 policy.AllowAnyHeader()
                     .AllowAnyMethod()
-                    .WithOrigins("http://localhost:6969");
+                    .WithOrigins("http://localhost:5173");
             });
         });
         
