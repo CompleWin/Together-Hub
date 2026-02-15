@@ -1,6 +1,4 @@
-﻿using Application.Topics.Queries.GetTopic;
-
-namespace Api.Controllers;
+﻿namespace Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -19,9 +17,11 @@ public class TopicsController(IMediator mediator) : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<TopicResponseDto>> CreateTopic(CreateTopicRequestDto dto, CancellationToken ct)
+    public async Task<IResult> CreateTopic(CreateTopicRequestDto dto, CancellationToken ct)
     {
-        return Ok();
+        var response = await mediator.Send(new CreateTopicCommand(dto), ct);
+        
+        return Results.Created($"/topics/{response.Result.Id}", response.Result);
     }
 
     [HttpPut("{id}")]
@@ -34,9 +34,10 @@ public class TopicsController(IMediator mediator) : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult> DeleteTopic(Guid id, CancellationToken ct)
+    public async Task<IResult> DeleteTopic(Guid id, 
+        CancellationToken ct)
     {
-        return NoContent();
+        return Results.Ok(await mediator.Send(new DeleteTopicCommand(id), ct));
     }
     
 }
