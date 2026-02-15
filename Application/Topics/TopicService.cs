@@ -3,6 +3,7 @@
 
 namespace Application.Topics;
 
+[Obsolete]
 public class TopicService(
     IApplicationDbContext dbContext,
     ILogger<TopicService> logger) : ITopicService

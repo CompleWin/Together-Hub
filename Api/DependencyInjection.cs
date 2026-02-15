@@ -17,6 +17,10 @@ public static class DependencyInjection
             });
         });
         
+        services.AddMediatR(config => 
+            config.RegisterServicesFromAssembly(
+                typeof(GetTopicsHandler).Assembly));
+        
         services.AddOpenApi();
         services.AddControllers();
         services.AddExceptionHandler<CustomExceptionHandler>();
@@ -26,11 +30,11 @@ public static class DependencyInjection
     public static WebApplication UseApiServices(this WebApplication app)
     {
         app.UseCors("react-policy");
-        app.UseExceptionHandler(options => {});
+        app.UseExceptionHandler(options => { });
         app.UseHttpsRedirection();
         app.UseAuthorization();
         app.MapControllers();
-        
+
         return app;
     }
 }

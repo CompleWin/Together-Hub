@@ -1,27 +1,25 @@
-﻿
-
-namespace Api.Controllers;
+﻿namespace Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class TopicsController(ITopicService topicService) : ControllerBase
+public class TopicsController(IMediator mediator) : ControllerBase
 {
     [HttpGet]
     public async Task<ActionResult<List<TopicResponseDto>>> GetTopics(CancellationToken ct)
     {
-        return Ok(await topicService.GetTopicsAsync(ct));
+        return Ok(await mediator.Send(new GetTopicsQuery(), ct));
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<TopicResponseDto>> GetTopic(Guid id, CancellationToken ct)
     {
-        return Ok(await topicService.GetTopicAsync(id, ct));
+        return Ok();
     }
 
     [HttpPost]
     public async Task<ActionResult<TopicResponseDto>> CreateTopic(CreateTopicRequestDto dto, CancellationToken ct)
     {
-        return Ok(await topicService.CreateTopicAsync(dto, ct));
+        return Ok();
     }
 
     [HttpPut("{id}")]
@@ -30,13 +28,12 @@ public class TopicsController(ITopicService topicService) : ControllerBase
         [FromBody] UpdateTopicRequestDto dto,
         CancellationToken ct)
     {
-        return Ok(await topicService.UpdateTopicAsync(id, dto, ct));
+        return Ok();
     }
 
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteTopic(Guid id, CancellationToken ct)
     {
-        await topicService.DeleteTopicAsync(id, ct);
         return NoContent();
     }
     
