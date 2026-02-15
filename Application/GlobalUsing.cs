@@ -7,3 +7,4 @@ global using Domain.ValueObjects;
 global using Microsoft.Extensions.Logging;
 global using Shared.CQRS;
 global using Application.Data.DataBaseContext;
+global using AutoMapper;
