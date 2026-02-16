@@ -1,4 +1,5 @@
-﻿using Api.Security.Extensions;
+﻿using Api.Middleware;
+using Api.Security.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 
@@ -43,6 +44,7 @@ public static class DependencyInjection
     public static WebApplication UseApiServices(this WebApplication app)
     {
         app.UseCors("react-policy");
+        app.UseMiddleware<ValidationMiddleware>();
         app.UseExceptionHandler(options => { });
         app.UseHttpsRedirection();
         app.UseAuthentication();
