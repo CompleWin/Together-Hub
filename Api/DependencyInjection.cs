@@ -27,6 +27,7 @@ public static class DependencyInjection
         services.AddControllers();
         services.AddExceptionHandler<CustomExceptionHandler>();
         services.AddIdentityServices(configuration);
+        
         return services;
     }
 

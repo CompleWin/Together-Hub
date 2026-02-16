@@ -19,6 +19,7 @@ public static class IdentityOptionsExtensions
             .AddEntityFrameworkStores<ApplicationDbContext>();
 
         services.AddAuthentication();
+        services.AddScoped<IJwtSecurityService, JwtSecurityService>();
         
         return services;
     }

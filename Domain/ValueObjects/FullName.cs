@@ -18,4 +18,6 @@ public record FullName
 
         return new FullName(firstName, lastName);
     }
+    
+    override public string ToString() => $"{FirstName} {LastName}";
 }

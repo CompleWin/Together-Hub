@@ -14,3 +14,6 @@ global using Application.Topics.Commands.UpdateTopic;
 global using Api.Exception.Handler;
 global using Application.Mapping;
 global using Domain.Security;
+global using Api.Security.Services;
+global using Domain.Security.Dtos;
+global using Microsoft.AspNetCore.Identity;
