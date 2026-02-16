@@ -1,4 +1,6 @@
 ﻿using Api.Security.Extensions;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace Api;
 
@@ -24,7 +26,14 @@ public static class DependencyInjection
         services.AddAutoMapper(typeof(MappingProfile).Assembly);
         
         services.AddOpenApi();
-        services.AddControllers();
+        services.AddControllers(options =>
+        {
+            var policy = new AuthorizationPolicyBuilder()
+                .RequireAuthenticatedUser()
+                .Build();
+            
+            options.Filters.Add(new AuthorizeFilter(policy));
+        });
         services.AddExceptionHandler<CustomExceptionHandler>();
         services.AddIdentityServices(configuration);
         

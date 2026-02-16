@@ -6,7 +6,6 @@ namespace Api.Controllers;
 [Route("api/[controller]")]
 public class TestAuthController : ControllerBase
 {
-    [Authorize]
     [HttpGet("test1")]
     public async Task<IResult> Test1()
     {
