@@ -1,4 +1,6 @@
-﻿namespace Api;
+﻿using Api.Security.Extensions;
+
+namespace Api;
 
 public static class DependencyInjection
 {
@@ -24,6 +26,7 @@ public static class DependencyInjection
         services.AddOpenApi();
         services.AddControllers();
         services.AddExceptionHandler<CustomExceptionHandler>();
+        services.AddIdentityServices(configuration);
         return services;
     }
 
