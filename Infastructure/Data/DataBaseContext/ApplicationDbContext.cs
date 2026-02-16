@@ -1,9 +1,11 @@
 ﻿using System.Reflection;
 using Application.Data.DataBaseContext;
+using Domain.Security;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Infastructure.Data.DataBaseContext;
 
-public class ApplicationDbContext : DbContext, IApplicationDbContext
+public class ApplicationDbContext : IdentityDbContext<CustomIdentityUser>, IApplicationDbContext
 {
     public DbSet<Topic> Topics => Set<Topic>();
 
