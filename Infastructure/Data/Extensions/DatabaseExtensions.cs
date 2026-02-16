@@ -1,7 +1,4 @@
-﻿using Infastructure.Data.DataBaseContext;
-using Microsoft.AspNetCore.Builder;
-
-namespace Infastructure.Data.Extensions;
+﻿namespace Infastructure.Data.Extensions;
 
 public static class DatabaseExtensions
 {
@@ -12,14 +9,22 @@ public static class DatabaseExtensions
             .ServiceProvider
             .GetRequiredService<ApplicationDbContext>();
 
+        var manager = scope
+            .ServiceProvider
+            .GetRequiredService<UserManager<CustomIdentityUser>>();
+        
         await dbContext.Database.MigrateAsync();
-        await SeedData(dbContext);
+        await SeedData(dbContext, manager);
     }
 
-    private static async Task SeedData(ApplicationDbContext dbContext)
+    private static async Task SeedData(ApplicationDbContext dbContext,
+        UserManager<CustomIdentityUser> manager)
     {
         await SeedTopicAsync(dbContext);
+        await SeedUsersAsync(manager);
     }
+
+    
 
     private static async Task SeedTopicAsync(ApplicationDbContext dbContext)
     {
@@ -27,6 +32,17 @@ public static class DatabaseExtensions
         {
             await dbContext.Topics.AddRangeAsync(InitialData.Topics);
             await dbContext.SaveChangesAsync();
+        }
+    }
+    
+    private static async Task SeedUsersAsync(UserManager<CustomIdentityUser> manager)
+    {
+        if (!await manager.Users.AnyAsync())
+        {
+            foreach (var user in InitialData.Users)
+            {
+                await manager.CreateAsync(user, "1111");
+            }
         }
     }
 }

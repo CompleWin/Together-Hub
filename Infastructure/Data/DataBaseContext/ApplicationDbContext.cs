@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using Application.Data.DataBaseContext;
-using Domain.Security;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Infastructure.Data.DataBaseContext;

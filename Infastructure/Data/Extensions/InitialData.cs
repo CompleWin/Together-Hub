@@ -45,4 +45,32 @@ public static class InitialData
             Location.Of("Байкальская улица, 20", "Курск")
         )
     };
+
+    public static IEnumerable<CustomIdentityUser> Users => new List<CustomIdentityUser>
+    {
+        new()
+        {
+            Id = "20000000-0000-0000-0000-000000000001",
+            UserName = "user1",
+            Email = "User1@example.com",
+            FullName = FullName.Of("Дмитрий", "Петров"),
+            About = "Обожаю готовить и пробовать новые рецепты"
+        },
+        new()
+        {
+            Id = "20000000-0000-0000-0000-000000000002",
+            UserName = "user2",
+            Email = "uSer2@example.com",
+            FullName = FullName.Of("Ольга", "Сидорова"),
+            About = "Интересуюсь программированием и искусственным интеллектом"
+        },
+        new()
+        {
+            Id = "20000000-0000-0000-0000-000000000003",
+            UserName = "user3",
+            Email = "uSEr3@example.com",
+            FullName = FullName.Of("Иван", "Смирнов"),
+            About = "Занимаюсь спортом и веду активный образ жизни"
+        }
+    };
 }

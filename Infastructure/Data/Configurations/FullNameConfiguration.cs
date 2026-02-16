@@ -1,6 +1,4 @@
-﻿using Domain.Security;
-
-namespace Infastructure.Data.Configurations;
+﻿namespace Infastructure.Data.Configurations;
 
 public class FullNameConfiguration : IEntityTypeConfiguration<CustomIdentityUser>
 {

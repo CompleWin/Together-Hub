@@ -1,5 +1,4 @@
-﻿using Domain.Security;
-using Infastructure.Data.DataBaseContext;
+﻿using Infastructure.Data.DataBaseContext;
 
 namespace Api.Security.Extensions;
 

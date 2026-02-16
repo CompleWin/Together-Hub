@@ -13,3 +13,4 @@ global using Application.Topics.Commands.DeleteTopic;
 global using Application.Topics.Commands.UpdateTopic;
 global using Api.Exception.Handler;
 global using Application.Mapping;
+global using Domain.Security;
