@@ -12,12 +12,16 @@
 
 ## Commands
 ### Login
-Были добавлено `LoginUserResult`, `LoginUserCommand`, `LoginUserHandler` в слое Application => логика из Endpoint переехала в слой Application  
+Были добавлено `LoginUserResult`, `LoginUserQuery`, `LoginUserHandler` в слое Application => логика из Endpoint переехала в слой Application  
 Изменился Endpoint /login до одной команды `await mediator.Send(...)`
+
+`Application/Auth/Queries/LoginUser`
 
 ### Register
 Были добавлено `RegisterUserResult`, `RegisterUserCommand`, `RegisterUserHandler` в слое Application => логика из Endpoint переехала в слой Application  
 Изменился Endpoint /register до одной команды `await mediator.Send(...)`
+
+`Application/Auth/Commands/RegisterUser`
 
 ## Exceptions
 Был добавлен `UserException` и его наследники:  

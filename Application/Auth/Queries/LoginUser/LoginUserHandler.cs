@@ -2,13 +2,13 @@
 using Application.Security.Services;
 using Microsoft.AspNetCore.Identity;
 
-namespace Application.Auth.Commands.Login;
+namespace Application.Auth.Queries.LoginUser;
 
 public class LoginUserHandler(UserManager<CustomIdentityUser> userManager, 
     IJwtSecurityService jwtSecurityService, IMapper mapper) 
-    : ICommandHandler<LoginUserCommand, LoginUserResult>
+    : IQueryHandler<LoginUserQuery, LoginUserResult>
 {
-    public async Task<LoginUserResult> Handle(LoginUserCommand request,
+    public async Task<LoginUserResult> Handle(LoginUserQuery request,
         CancellationToken ct)
     {
         var user = await userManager.FindByEmailAsync(request.LoginDto.Email);
