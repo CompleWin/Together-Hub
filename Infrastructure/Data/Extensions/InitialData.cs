@@ -1,4 +1,4 @@
-﻿namespace Infastructure.Data.Extensions;
+﻿namespace Infrastructure.Data.Extensions;
 
 public static class InitialData
 {

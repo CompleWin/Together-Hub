@@ -1,6 +1,6 @@
 ﻿global using Api;
-global using Infastructure;
-global using Infastructure.Data.Extensions;
+global using Infrastructure;
+global using Infrastructure.Data.Extensions;
 global using Microsoft.AspNetCore.Mvc;
 global using Application.Exceptions;
 global using Application.Topics.Queries.GetTopics;
@@ -15,4 +15,4 @@ global using Domain.Security;
 global using Application.DtoModels.Security;
 global using Microsoft.AspNetCore.Authorization;
 global using System.Text;
-global using Infastructure.Data.DataBaseContext;
+global using Infrastructure.Data.DataBaseContext;

@@ -6,6 +6,6 @@ global using Microsoft.Extensions.DependencyInjection;
 global using Domain.Security;
 global using Microsoft.AspNetCore.Builder;
 global using Microsoft.AspNetCore.Identity;
-global using Infastructure.Data.DataBaseContext;
+global using Infrastructure.Data.DataBaseContext;
 global using Microsoft.Extensions.Configuration;
 global using Application.Data.DataBaseContext;

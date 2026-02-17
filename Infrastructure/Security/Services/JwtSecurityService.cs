@@ -4,7 +4,7 @@ using Application.Security.Services;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Infastructure.Security.Services;
+namespace Infrastructure.Security.Services;
 
 public class JwtSecurityService(IConfiguration configuration) : IJwtSecurityService
 {

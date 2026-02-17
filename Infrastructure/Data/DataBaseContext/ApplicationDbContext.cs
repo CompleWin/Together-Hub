@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-namespace Infastructure.Data.DataBaseContext;
+namespace Infrastructure.Data.DataBaseContext;
 
 public class ApplicationDbContext : IdentityDbContext<CustomIdentityUser>, IApplicationDbContext
 {
