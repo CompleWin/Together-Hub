@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-
-namespace Application.Topics.Commands.UpdateTopic;
+﻿namespace Application.Topics.Commands.UpdateTopic;
 
 public class UpdateTopicHandler(IApplicationDbContext dbContext, IMapper mapper)
     : ICommandHandler<UpdateTopicCommand, UpdateTopicResult>

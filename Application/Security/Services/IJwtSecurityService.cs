@@ -1,4 +1,4 @@
-﻿namespace Api.Security.Services;
+﻿namespace Application.Security.Services;
 
 public interface IJwtSecurityService
 {

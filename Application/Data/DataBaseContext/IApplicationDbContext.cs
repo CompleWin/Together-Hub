@@ -1,5 +1,4 @@
-﻿
-namespace Application.Data.DataBaseContext;
+﻿namespace Application.Data.DataBaseContext;
 
 public interface IApplicationDbContext
 {

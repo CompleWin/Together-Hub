@@ -5,14 +5,14 @@ public class GetTopicHandler(IApplicationDbContext dbContext)
 {
     public async Task<GetTopicResult> Handle(GetTopicQuery request, CancellationToken ct)
     {
-        TopicId topicId = TopicId.Of(request.id);
+        TopicId topicId = TopicId.Of(request.Id);
         var topic = await dbContext
             .Topics
             .FindAsync([topicId], ct);
 
         if (topic is null || topic.IsDeleted)
         {
-            throw new TopicNotFoundException(request.id);
+            throw new TopicNotFoundException(request.Id);
         }
 
         return new GetTopicResult(topic.ToTopicResponseDto());

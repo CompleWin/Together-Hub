@@ -1,7 +1,4 @@
-﻿using Application.Data.DataBaseContext;
-using Infastructure.Data.DataBaseContext;
-using Microsoft.Extensions.Configuration;
-
+﻿
 namespace Infastructure;
 
 public static class DependencyInjection

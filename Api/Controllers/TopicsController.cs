@@ -1,4 +1,6 @@
-﻿namespace Api.Controllers;
+﻿using Application.DtoModels.Topic;
+
+namespace Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

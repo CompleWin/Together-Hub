@@ -20,7 +20,14 @@ public class CustomExceptionHandler(
                 exception.GetType().Name,
                 httpContext.Response.StatusCode = StatusCodes.Status404NotFound
             ),
-
+            
+            UserException => (
+                exception.Message,
+                exception.GetType().Name,
+                httpContext.Response.StatusCode = StatusCodes.Status401Unauthorized
+                ),
+            
+            
             _ => (
                 exception.Message,
                 exception.GetType().Name,

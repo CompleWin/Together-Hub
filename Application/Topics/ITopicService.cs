@@ -1,6 +1,5 @@
 ﻿namespace Application.Topics;
 
-
 [Obsolete]
 public interface ITopicService
 {

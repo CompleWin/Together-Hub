@@ -1,12 +1,12 @@
 ﻿using System.Security.Claims;
 using System.Text;
+using Application.Security.Services;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
-using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
-namespace Api.Security.Services;
+namespace Infastructure.Security.Services;
 
-public class JwtSecurityService(IConfiguration configuration, ILogger<JwtSecurityService> logger) : IJwtSecurityService
+public class JwtSecurityService(IConfiguration configuration) : IJwtSecurityService
 {
     public string CreateToken(CustomIdentityUser user)
     {

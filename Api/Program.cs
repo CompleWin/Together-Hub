@@ -1,4 +1,3 @@
-using System.Text;
 using Application;
 
 Console.OutputEncoding = Encoding.Unicode;

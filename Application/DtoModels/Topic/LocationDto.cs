@@ -1,4 +1,4 @@
-﻿namespace Application.DtoModels;
+﻿namespace Application.DtoModels.Topic;
 
 public record LocationDto(
     string City,

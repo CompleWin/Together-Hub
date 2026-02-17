@@ -1,6 +1,6 @@
-﻿namespace Application.DtoModels;
+﻿namespace Application.DtoModels.Topic;
 
-public record CreateTopicRequestDto(
+public record UpdateTopicRequestDto(
     string Title,
     string Summary,
     string TopicType,

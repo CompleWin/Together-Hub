@@ -1,7 +1,4 @@
-﻿using Application.Data.DataBaseContext;
-
-
-namespace Application.Topics;
+﻿namespace Application.Topics;
 
 [Obsolete]
 public class TopicService(
