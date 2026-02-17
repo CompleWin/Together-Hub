@@ -17,7 +17,7 @@ public class MappingProfile : Profile
                 src.Location.City
             )))
             .ForMember(dest => dest.Id, opt => opt.MapFrom(_ => Guid.NewGuid()));
-
+        
         CreateMap<CustomIdentityUser, IdentityUserResponseDto>()
             .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.UserName))
             .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))

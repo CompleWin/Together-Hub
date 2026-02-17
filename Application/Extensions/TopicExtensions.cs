@@ -13,6 +13,7 @@ public static class TopicExtensions
                 topic.Location.City,
                 topic.Location.Street),
             EventStart: topic.EventStart);
+      
     }
 
     public static List<TopicResponseDto> ToTopicResponseDtoList(this List<Topic> topics)

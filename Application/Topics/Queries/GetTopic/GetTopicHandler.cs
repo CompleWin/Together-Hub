@@ -1,6 +1,6 @@
 ﻿namespace Application.Topics.Queries.GetTopic;
 
-public class GetTopicHandler(IApplicationDbContext dbContext) 
+public class GetTopicHandler(IApplicationDbContext dbContext, IMapper mapper) 
     : IQueryHandler<GetTopicQuery, GetTopicResult>
 {
     public async Task<GetTopicResult> Handle(GetTopicQuery request, CancellationToken ct)
@@ -14,7 +14,8 @@ public class GetTopicHandler(IApplicationDbContext dbContext)
         {
             throw new TopicNotFoundException(request.Id);
         }
-
+        
+        
         return new GetTopicResult(topic.ToTopicResponseDto());
 
 
