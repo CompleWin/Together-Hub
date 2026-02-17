@@ -1,4 +1,5 @@
-﻿using Application.Security.Services;
+﻿using Application.Exceptions.UserExceptions;
+using Application.Security.Services;
 using Microsoft.AspNetCore.Identity;
 
 namespace Application.Auth.Commands.Login;
@@ -21,8 +22,8 @@ public class LoginUserHandler(UserManager<CustomIdentityUser> userManager,
 
         if (result)
         {
-            var response = new IdentityUserResponseDto(
-                user.UserName!, user.Email!, jwtSecurityService.CreateToken(user));
+            var token = jwtSecurityService.CreateToken(user);
+            var response = mapper.Map<IdentityUserResponseDto>(user) with {JwtToken = token};
             
             return new LoginUserResult(response);
         }

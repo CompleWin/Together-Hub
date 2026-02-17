@@ -1,4 +1,4 @@
-﻿namespace Application.Exceptions;
+﻿namespace Application.Exceptions.UserExceptions;
 
 public class UserWrongPasswordException : UserException
 {
