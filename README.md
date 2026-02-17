@@ -35,7 +35,12 @@
 
 ## Mapping
 Добавлен маппинг `CustomIdentityUser` в `IdentityUserResponseDto`  
-Добавлен маппинг `RegisterUserRequestDto` в `CustomIdentityUser`
+Добавлен маппинг `RegisterUserRequestDto` в `CustomIdentityUser`  
+Добавлен маппинг `Topic` в `TopicResponseDto` // Прошу проверить, правильно ли я использую этот маппинг в 
+Command/Queries и правильно ли я маплю. Есть подозрения, что я неэффективно используя память
+Добавлена конвертация `TopicId` в `Guid`
+Добавлена конвертация `Location` в `LocationDto`
+
 
 ## Рефакторинг using'ов
 По мелочи убрал using'и в `GlobalUsing`
