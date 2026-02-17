@@ -1,0 +1,537 @@
+{
+  "info": {
+    "_postman_id": "1a297393-f2d9-4199-b892-5cfbae9feed7",
+    "name": "Together Hub Api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52131823",
+    "_collection_link": "https://go.postman.co/collection/52131823-1a297393-f2d9-4199-b892-5cfbae9feed7?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "/topics",
+      "item": [
+        {
+          "name": "/topics",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const response = pm.response.json();\r",
+                  "if (response && response.topics.length > 0) {\r",
+                  "    pm.collectionVariables.set(\"firstTopicId\", response.topics[0].id);\r",
+                  "    console.log(\"First Id topic saved: \" + response.topics[0].id);\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwtToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/api/topics",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                "topics"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/topic validId",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwtToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/api/topics/{{firstTopicId}}",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                "topics",
+                "{{firstTopicId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/topic inValidId",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/api/topics/10000000-0000-0000-0000-000000000004",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                "topics",
+                "10000000-0000-0000-0000-000000000004"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/create",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const response = pm.response.json();\r",
+                  "if (response)\r",
+                  "{\r",
+                  "    pm.collectionVariables.set(\"firstTopicId\", response.id);\r",
+                  "    console.log(\"First Id topic saved: \" + response.id);\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "var moment = require('moment');\r",
+                  "const titles = [\r",
+                  "    \"Технологические тренды\",\r",
+                  "    \"Будущие технологии\",\r",
+                  "    \"Инновации 2030\",\r",
+                  "    \"Прорывные технологии\",\r",
+                  "    \"Технологии будущего\"\r",
+                  "];\r",
+                  "\r",
+                  "const summaries = [\r",
+                  "    \"Обзор ключевых технологических инноваций\",\r",
+                  "    \"Анализ будущих трендов\",\r",
+                  "    \"Влияние технологий на общество\",\r",
+                  "    \"Ключевые достижения в науке\",\r",
+                  "    \"Технологические вызовы будущего\"\r",
+                  "];\r",
+                  "\r",
+                  "const topicTypes = [\r",
+                  "    \"Конференция\",\r",
+                  "    \"Семинар\",\r",
+                  "    \"Вебинар\",\r",
+                  "    \"Круглый стол\",\r",
+                  "    \"Мастер-класс\"\r",
+                  "];\r",
+                  "\r",
+                  "const locations = [\r",
+                  "    { street: \"Кутузовский проспект, 36\", city: \"Смоленск\"},\r",
+                  "    { street: \"Советская улица, 12\", city: \"Санкт-Петербург\" },\r",
+                  "    { street: \"Гагарина улица, 5\", city: \"Москва\" },\r",
+                  "    { street: \"Пушкина улица, 10\", city: \"Новосибирск\" },\r",
+                  "    { street: \"Ленина улица, 20\", city: \"Екатеринбург\" }\r",
+                  "];\r",
+                  "\r",
+                  "const randomDate = moment.utc()\r",
+                  "            .year(Math.floor(Math.random() * (2035 - 2027 + 1)) + 2027)\r",
+                  "            .month(Math.floor(Math.random() * 12))\r",
+                  "            .date(Math.floor(Math.random() * 28) + 1)\r",
+                  "            .hour(Math.floor(Math.random() * 24))\r",
+                  "            .minute(Math.floor(Math.random() * 60))\r",
+                  "            .second(0)\r",
+                  "            .millisecond(0);\r",
+                  "\r",
+                  "const randomTitle = titles[Math.floor(Math.random() * titles.length)];\r",
+                  "const randomSummary = summaries[Math.floor(Math.random() * summaries.length)];\r",
+                  "const randomTopicTypes = topicTypes[Math.floor(Math.random() * topicTypes.length)];\r",
+                  "const randomLocation = locations[Math.floor(Math.random() * locations.length)];\r",
+                  "\r",
+                  "\r",
+                  "pm.environment.set(\"title\", randomTitle);\r",
+                  "pm.environment.set(\"summary\", randomSummary);\r",
+                  "pm.environment.set(\"topicType\", randomTopicTypes);\r",
+                  "pm.environment.set(\"locationStreet\", randomLocation.street);\r",
+                  "pm.environment.set(\"locationCity\", randomLocation.city);\r",
+                  "pm.environment.set(\"currentDateTime\", randomDate.format(\"YYYY-MM-DDTHH:mm:ss\"));\r",
+                  "\r",
+                  "\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwtToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"{{title}}\",\r\n    \"eventStart\": \"{{currentDateTime}}\",\r\n    \"summary\": \"{{summary}}\",\r\n    \"topicType\": \"{{topicType}}\",\r\n    \"location\": {\r\n        \"street\": \"{{locationStreet}}\",\r\n        \"city\": \"{{locationCity}}\"\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/api/topics/",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                "topics",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/update",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwtToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"Update: Технологические тренды 2035\",\r\n    \"summary\": \"Update: Обзор ключевых технологических инноваций\",\r\n    \"topicType\": \"Update: Конференция\",\r\n    \"location\": {\r\n        \"street\": \"Update: Кутузовский проспект, 36\",\r\n        \"city\": \"Update: Тула\"\r\n    },\r\n    \"eventStart\": \"2138-01-15T10:00:00\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/api/topics/{{firstTopicId}}",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                "topics",
+                "{{firstTopicId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/delete",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwtToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/api/topics/{{firstTopicId}}",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                "topics",
+                "{{firstTopicId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "/auth",
+      "item": [
+        {
+          "name": "/login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const user = pm.response.json();\r",
+                  "\r",
+                  "if (pm.response.code === 200 && \r",
+                  "    user && \r",
+                  "    user.result.jwtToken) {\r",
+                  "        pm.collectionVariables.set(\"jwtToken\", user.result.jwtToken);\r",
+                  "        console.log(\" json: \" + user.result.jwtToken);\r",
+                  "        console.log(\" Токен: \" + pm.collectionVariables.get(\"jwtToken\"));\r",
+                  "} else {\r",
+                  "    console.error(\"Jwt не найден\");\r",
+                  "    console.error(\"Статус ответа: \" + pm.response.code);\r",
+                  "    console.error(\"Тело ответа: \" + user);\r",
+                  "}\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Email\": \"user1@example.com\",\r\n    \"Password\": \"1111\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/api/auth/login",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const user = pm.response.json();\r",
+                  "\r",
+                  "if (pm.response.code === 200 && \r",
+                  "    user && \r",
+                  "    user.result.jwtToken) {\r",
+                  "        pm.collectionVariables.set(\"jwtToken\", user.result.jwtToken);\r",
+                  "        console.log(\" json: \" + user.result.jwtToken);\r",
+                  "        console.log(\" Токен: \" + pm.collectionVariables.get(\"jwtToken\"));\r",
+                  "} else {\r",
+                  "    console.error(\"Jwt не найден\");\r",
+                  "    console.error(\"Статус ответа: \" + pm.response.code);\r",
+                  "    console.error(\"Тело ответа: \" + user);\r",
+                  "}\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"FirstName\": \"Nikolai\",\r\n    \"LastName\": \"Ivakhnenko\",\r\n    \"Username\": \"complewiN\",\r\n    \"Email\": \"complewiN@yandex.ru\",\r\n    \"Password\": \"\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/api/auth/register",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Auth Test",
+      "item": [
+        {
+          "name": "/test1",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwtToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/api/testauth/test1",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                "testauth",
+                "test1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/test2",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwtToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/api/testauth/test2",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                "testauth",
+                "test2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "host",
+      "value": ""
+    },
+    {
+      "key": "firstTopicId",
+      "value": ""
+    },
+    {
+      "key": "jwtToken",
+      "value": ""
+    }
+  ]
+}

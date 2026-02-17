@@ -1,5 +1,7 @@
 # Короткое описание того, что не совпадает с реализацией Сергея.
 
+Послание Сергею: я все изменения по рефакторингу делал в ветке auth-refactoring и уже после мерджа сделал репо на гитхабе и запушил и там не отображается вторая ветка...Локально я ее удалил...Делал все строго по инструкции!
+
 ## JwtTokenSerivce
 Интерфейс сервиса перемещен в слой Application
 `Application/Security/Services/IJwtSecurityService.cs`  
@@ -81,7 +83,7 @@ Command/Queries и правильно ли я маплю. Есть подозр�
 
 ```json
 {
-  "firstName": "John,
+  "firstName": "John",
   "lastName": "Doe",
   "username": "johndoe",
   "email": "johndoe@example.com",
