@@ -20,6 +20,6 @@ public class UpdateTopicHandler(IApplicationDbContext dbContext, IMapper mapper)
 
         await dbContext.SaveChangesAsync(ct);
 
-        return new UpdateTopicResult(topic.ToTopicResponseDto());
+        return new UpdateTopicResult(mapper.Map<TopicResponseDto>(topic));
     }
 }
