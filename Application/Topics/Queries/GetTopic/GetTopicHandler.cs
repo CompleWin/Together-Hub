@@ -15,8 +15,8 @@ public class GetTopicHandler(IApplicationDbContext dbContext, IMapper mapper)
             throw new TopicNotFoundException(request.Id);
         }
         
-        
-        return new GetTopicResult(topic.ToTopicResponseDto());
+        var response = mapper.Map<TopicResponseDto>(topic);
+        return new GetTopicResult(response);
 
 
     }

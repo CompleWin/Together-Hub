@@ -18,6 +18,14 @@ public class MappingProfile : Profile
             )))
             .ForMember(dest => dest.Id, opt => opt.MapFrom(_ => Guid.NewGuid()));
         
+        CreateMap<TopicId, Guid>()
+            .ConstructUsing(id => id.Value);
+        CreateMap<Location, LocationDto>()
+            .ConstructUsing(l => new LocationDto(l.City, l.Street));
+
+        CreateMap<Topic, TopicResponseDto>();
+
+        
         CreateMap<CustomIdentityUser, IdentityUserResponseDto>()
             .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.UserName))
             .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
