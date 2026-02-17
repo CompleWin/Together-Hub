@@ -1,9 +1,10 @@
-﻿using Application.Security.Services;
+﻿using System.Text;
+using Application.Security.Services;
 using Infrastructure.Security.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Api.Security.Extensions;
+namespace Infrastructure.Security.Extensions;
 
 public static class IdentityOptionsExtensions
 {

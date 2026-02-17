@@ -1,5 +1,5 @@
 ﻿using Api.Middleware;
-using Api.Security.Extensions;
+using Infrastructure.Security.Extensions;
 using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace Api;
@@ -35,7 +35,6 @@ public static class DependencyInjection
             options.Filters.Add(new AuthorizeFilter(policy));
         });
         services.AddExceptionHandler<CustomExceptionHandler>();
-        services.AddIdentityServices(configuration);
         
         return services;
     }
@@ -43,7 +42,6 @@ public static class DependencyInjection
     public static WebApplication UseApiServices(this WebApplication app)
     {
         app.UseCors("react-policy");
-        app.UseMiddleware<ValidationMiddleware>();
         app.UseExceptionHandler(options => { });
         app.UseHttpsRedirection();
         app.UseAuthentication();

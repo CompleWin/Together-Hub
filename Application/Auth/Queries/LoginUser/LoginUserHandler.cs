@@ -15,7 +15,7 @@ public class LoginUserHandler(UserManager<CustomIdentityUser> userManager,
 
         if (user is null)
         {
-            throw new UserWrongEmailException(request.LoginDto.Email);
+            throw new UserWrongEmailOrPasswordException();
         }
 
         var result = await userManager.CheckPasswordAsync(user, request.LoginDto.Password);
@@ -28,6 +28,6 @@ public class LoginUserHandler(UserManager<CustomIdentityUser> userManager,
             return new LoginUserResult(response);
         }
         
-        throw new UserWrongPasswordException();
+        throw new UserWrongEmailOrPasswordException();
     }
 }

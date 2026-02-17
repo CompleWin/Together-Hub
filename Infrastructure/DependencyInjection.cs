@@ -1,8 +1,10 @@
-﻿namespace Infrastructure;
+﻿using Infrastructure.Security.Extensions;
+
+namespace Infrastructure;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddInfastructureServices(this IServiceCollection services,
+    public static IServiceCollection AddInfrastructureServices(this IServiceCollection services,
         IConfiguration configuration)
     {
         string connectionString = configuration
@@ -14,6 +16,7 @@ public static class DependencyInjection
         });
         
         services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
+        services.AddIdentityServices(configuration);
         
         return services;
     }

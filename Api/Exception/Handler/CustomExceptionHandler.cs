@@ -21,14 +21,21 @@ public class CustomExceptionHandler(
                 exception.GetType().Name,
                 httpContext.Response.StatusCode = StatusCodes.Status404NotFound
             ),
+
+            UserWrongEmailOrPasswordException => (
+                exception.Message,
+                exception.GetType().Name,
+                httpContext.Response.StatusCode = StatusCodes.Status400BadRequest
+            ),
+            
             
             UserException => (
                 exception.Message,
                 exception.GetType().Name,
                 httpContext.Response.StatusCode = StatusCodes.Status401Unauthorized
-                ),
-            
-            
+            ),
+
+
             _ => (
                 exception.Message,
                 exception.GetType().Name,
@@ -43,9 +50,9 @@ public class CustomExceptionHandler(
             Status = exceptionDetails.StatusCode,
             Instance = httpContext.Request.Path
         };
-            
+
         problemDetails.Extensions.Add("traceId", httpContext.TraceIdentifier);
-        
+
         await httpContext
             .Response
             .WriteAsJsonAsync(problemDetails, ct);
