@@ -1,6 +1,6 @@
-﻿namespace Application.Exceptions.UserExceptions;
+﻿namespace Domain.Exceptions.UserExceptions;
 
-public class UserException : Exception
+public class UserException : DomainException
 {
     public UserException(string message) : base(message)
     {

@@ -1,8 +1,9 @@
-﻿using Application.Exceptions.UserExceptions;
+﻿using Application.Security.Dtos;
 using Application.Security.Services;
+using Domain.Exceptions.UserExceptions;
 using Microsoft.AspNetCore.Identity;
 
-namespace Application.Auth.Commands.Register;
+namespace Application.Security.Commands.RegisterUser;
 
 public class RegisterUserHandler(UserManager<CustomIdentityUser> userManager, 
     IJwtSecurityService jwtSecurityService, IMapper mapper) : ICommandHandler<RegisterUserCommand, RegisterUserResult>

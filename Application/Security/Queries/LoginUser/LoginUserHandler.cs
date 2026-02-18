@@ -1,8 +1,9 @@
-﻿using Application.Exceptions.UserExceptions;
+﻿using Application.Security.Dtos;
 using Application.Security.Services;
+using Domain.Exceptions.UserExceptions;
 using Microsoft.AspNetCore.Identity;
 
-namespace Application.Auth.Queries.LoginUser;
+namespace Application.Security.Queries.LoginUser;
 
 public class LoginUserHandler(UserManager<CustomIdentityUser> userManager, 
     IJwtSecurityService jwtSecurityService, IMapper mapper) 

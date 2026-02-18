@@ -1,4 +1,4 @@
-﻿namespace Application.Exceptions.UserExceptions;
+﻿namespace Domain.Exceptions.UserExceptions;
 
 public class UserWrongEmailOrPasswordException : UserException
 {

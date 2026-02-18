@@ -1,4 +1,6 @@
-﻿namespace Application.Topics.Queries.GetTopics;
+﻿using Application.Topics.Dtos;
+
+namespace Application.Topics.Queries.GetTopics;
 
 public class GetTopicsHandler(IApplicationDbContext dbContext, IMapper mapper) 
     : IQueryHandler<GetTopicsQuery, GetTopicsResult>

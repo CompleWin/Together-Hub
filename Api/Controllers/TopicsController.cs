@@ -1,4 +1,4 @@
-﻿using Application.DtoModels.Topic;
+﻿using Application.Topics.Dtos;
 
 namespace Api.Controllers;
 

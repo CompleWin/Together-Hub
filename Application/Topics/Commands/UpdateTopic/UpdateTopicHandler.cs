@@ -1,4 +1,8 @@
-﻿namespace Application.Topics.Commands.UpdateTopic;
+﻿using Application.Topics.Dtos;
+using Domain.Exceptions;
+using Domain.Exceptions.TopicException;
+
+namespace Application.Topics.Commands.UpdateTopic;
 
 public class UpdateTopicHandler(IApplicationDbContext dbContext, IMapper mapper)
     : ICommandHandler<UpdateTopicCommand, UpdateTopicResult>

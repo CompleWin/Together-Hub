@@ -1,4 +1,4 @@
-﻿namespace Application.DtoModels.Topic;
+﻿namespace Application.Topics.Dtos;
 
 public record TopicResponseDto(
     Guid Id,

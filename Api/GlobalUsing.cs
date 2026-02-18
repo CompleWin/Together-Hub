@@ -2,7 +2,6 @@
 global using Infrastructure;
 global using Infrastructure.Data.Extensions;
 global using Microsoft.AspNetCore.Mvc;
-global using Application.Exceptions;
 global using Application.Topics.Queries.GetTopics;
 global using MediatR;
 global using Application.Topics.Commands.CreateTopic;
@@ -12,7 +11,6 @@ global using Application.Topics.Commands.UpdateTopic;
 global using Api.Exception.Handler;
 global using Application.Mapping;
 global using Domain.Security;
-global using Application.DtoModels.Security;
 global using Microsoft.AspNetCore.Authorization;
 global using System.Text;
 global using Infrastructure.Data.DataBaseContext;

@@ -1,4 +1,6 @@
-﻿namespace Application.Topics.Commands.CreateTopic;
+﻿using Application.Topics.Dtos;
+
+namespace Application.Topics.Commands.CreateTopic;
 
 public class CreateTopicHandler(IApplicationDbContext dbContext, IMapper mapper) :
     ICommandHandler<CreateTopicCommand, CreateTopicResult>

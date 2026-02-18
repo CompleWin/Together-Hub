@@ -1,6 +1,10 @@
-﻿namespace Application.Topics.Obselete;
+﻿using Application.Topics.Dtos;
+using Domain.Exceptions;
+using Domain.Exceptions.TopicException;
 
-[Obsolete]
+namespace Application.Topics.Obselete;
+
+[Obsolete("Use mediatR pattern instead")]
 public class TopicService(
     IApplicationDbContext dbContext,
     ILogger<TopicService> logger) : ITopicService

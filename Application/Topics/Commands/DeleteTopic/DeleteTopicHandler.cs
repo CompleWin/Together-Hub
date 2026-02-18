@@ -1,4 +1,7 @@
-﻿namespace Application.Topics.Commands.DeleteTopic;
+﻿using Domain.Exceptions;
+using Domain.Exceptions.TopicException;
+
+namespace Application.Topics.Commands.DeleteTopic;
 
 public class DeleteTopicHandler(IApplicationDbContext dbContext) 
     : ICommandHandler<DeleteTopicCommand, DeleteTopicResult>

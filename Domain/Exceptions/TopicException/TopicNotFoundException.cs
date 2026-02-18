@@ -1,4 +1,4 @@
-﻿namespace Application.Exceptions;
+﻿namespace Domain.Exceptions.TopicException;
 
 public class TopicNotFoundException : NotFoundException
 {

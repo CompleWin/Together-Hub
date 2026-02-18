@@ -1,5 +1,6 @@
-﻿using Application.Auth.Commands.Register;
-using Application.Auth.Queries.LoginUser;
+﻿using Application.Security.Commands.RegisterUser;
+using Application.Security.Dtos;
+using Application.Security.Queries.LoginUser;
 
 namespace Api.Controllers;
 

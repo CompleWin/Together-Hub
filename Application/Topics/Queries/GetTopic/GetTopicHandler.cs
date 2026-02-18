@@ -1,4 +1,8 @@
-﻿namespace Application.Topics.Queries.GetTopic;
+﻿using Application.Topics.Dtos;
+using Domain.Exceptions;
+using Domain.Exceptions.TopicException;
+
+namespace Application.Topics.Queries.GetTopic;
 
 public class GetTopicHandler(IApplicationDbContext dbContext, IMapper mapper) 
     : IQueryHandler<GetTopicQuery, GetTopicResult>

@@ -1,12 +1,9 @@
 ﻿global using Domain.Models;
 global using Microsoft.EntityFrameworkCore;
-global using Application.Exceptions;
 global using Application.Extensions;
 global using Domain.ValueObjects;
 global using Microsoft.Extensions.Logging;
 global using Shared.CQRS;
 global using Application.Data.DataBaseContext;
 global using AutoMapper;
-global using Application.DtoModels.Topic;
 global using Domain.Security;
-global using Application.DtoModels.Security;

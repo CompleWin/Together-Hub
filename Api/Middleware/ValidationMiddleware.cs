@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using Application.Security.Dtos;
 
 namespace Api.Middleware;
 

@@ -1,5 +1,8 @@
-﻿namespace Application.Extensions;
+﻿using Application.Topics.Dtos;
 
+namespace Application.Extensions;
+
+[Obsolete("Use mapping")]
 public static class TopicExtensions
 {
     public static TopicResponseDto ToTopicResponseDto(this Topic topic)

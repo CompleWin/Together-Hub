@@ -1,4 +1,6 @@
-﻿namespace Application.Topics.Obselete;
+﻿using Application.Topics.Dtos;
+
+namespace Application.Topics.Obselete;
 
 [Obsolete]
 public interface ITopicService

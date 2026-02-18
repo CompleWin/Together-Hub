@@ -1,4 +1,7 @@
-﻿namespace Application.Mapping;
+﻿using Application.Security.Dtos;
+using Application.Topics.Dtos;
+
+namespace Application.Mapping;
 
 public class MappingProfile : Profile
 {

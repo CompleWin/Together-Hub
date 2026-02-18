@@ -1,4 +1,4 @@
-﻿namespace Application.DtoModels.Security;
+﻿namespace Application.Security.Dtos;
 
 public record IdentityUserResponseDto
 {
