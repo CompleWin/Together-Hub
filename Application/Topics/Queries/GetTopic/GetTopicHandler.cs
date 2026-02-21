@@ -12,7 +12,9 @@ public class GetTopicHandler(IApplicationDbContext dbContext, IMapper mapper)
         TopicId topicId = TopicId.Of(request.Id);
         var topic = await dbContext
             .Topics
-            .FindAsync([topicId], ct);
+            .Include(t => t.Users)
+            .ThenInclude(c => c.CurrentUser)
+            .FirstOrDefaultAsync(t => t.Id == topicId, ct);
 
         if (topic is null || topic.IsDeleted)
         {

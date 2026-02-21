@@ -16,8 +16,14 @@ public static class TopicExtensions
                 topic.Location.City,
                 topic.Location.Street),
             EventStart: topic.EventStart,
-            Users: topic.Users);
-      
+            Users: topic.Users.Select(r => new UserProfileDto
+            {
+                Id = r.CurrentUser.Id,
+                Username = r.CurrentUser.UserName!,
+                Fullname = r.CurrentUser.FullName.ToString(),
+                Role = r.Role.ToString()
+            }).ToList()
+        );
     }
 
     public static List<TopicResponseDto> ToTopicResponseDtoList(this List<Topic> topics)

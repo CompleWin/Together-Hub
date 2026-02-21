@@ -28,6 +28,12 @@ public class MappingProfile : Profile
 
         CreateMap<Topic, TopicResponseDto>();
 
+        CreateMap<Relationship, UserProfileDto>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.CurrentUser.Id))
+            .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.CurrentUser.UserName))
+            .ForMember(dest => dest.Fullname, opt => opt.MapFrom(src => src.CurrentUser.FullName))
+            .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role));
+        
         
         CreateMap<CustomIdentityUser, IdentityUserResponseDto>()
             .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.UserName))
@@ -39,6 +45,17 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Username))
             .ForMember(dest => dest.About, opt => opt.MapFrom(_ => string.Empty))
             .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => FullName.Of(src.FirstName, src.LastName)));
+
+        CreateMap<UserProfileDto, CustomIdentityUser>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Username))
+            .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => FullName.Of(src.Fullname)));
         
+        CreateMap<RelationshipDto, Relationship>()
+            .ForMember(dest => dest.TopicReference, opt => opt.MapFrom(src => src.TopicReference))
+            .ForMember(dest => dest.UserReference, opt => opt.MapFrom(src => src.UserReference))
+            .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role));
+
+
     }
 }

@@ -11,6 +11,8 @@ public class GetTopicsHandler(IApplicationDbContext dbContext, IMapper mapper)
         var topics = await dbContext
             .Topics
             .AsNoTracking()
+            .Include(t => t.Users)
+            .ThenInclude(c => c.CurrentUser)
             .Where(t => !t.IsDeleted)
             .Select(t => mapper.Map<Topic, TopicResponseDto>(t))
             .ToListAsync(ct);
