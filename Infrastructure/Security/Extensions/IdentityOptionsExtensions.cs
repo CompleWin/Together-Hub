@@ -1,7 +1,9 @@
 ﻿using System.Text;
 using Application.Security.Services;
+using Infrastructure.Security.Auth.TopicDeletionPolicy;
 using Infrastructure.Security.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Infrastructure.Security.Extensions;
@@ -40,6 +42,15 @@ public static class IdentityOptionsExtensions
                 };
             });
         
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy("IsTopicAuthor", policy =>
+            {
+                policy.Requirements.Add(new TopicDeletionRequirement());
+            });
+        });
+
+        services.AddTransient<IAuthorizationHandler, TopicDeletionRequirementHandler>();
         services.AddScoped<IJwtSecurityService, JwtSecurityService>();
         
         return services;

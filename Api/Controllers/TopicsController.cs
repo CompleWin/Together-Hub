@@ -38,6 +38,7 @@ public class TopicsController(IMediator mediator) : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Policy = "IsTopicAuthor")]
     public async Task<IResult> DeleteTopic(Guid id, 
         CancellationToken ct)
     {
