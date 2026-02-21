@@ -1,4 +1,6 @@
-﻿using Infrastructure.Security.Extensions;
+﻿using Application.Security.Services;
+using Infrastructure.Security.Extensions;
+using Infrastructure.Security.Services;
 
 namespace Infrastructure;
 
@@ -17,6 +19,9 @@ public static class DependencyInjection
         
         services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
         services.AddIdentityServices(configuration);
+        
+        services.AddHttpContextAccessor();
+        services.AddScoped<IUserAccessor, UserAccessor>();
         
         return services;
     }
