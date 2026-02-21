@@ -8,6 +8,8 @@ public class Topic : Entity<TopicId>
     public string TopicType { get; set; } = default!;
     public Location Location { get; set; } = default!;
 
+    public List<Relationship> Users { get; set; } = new();
+    
     public static Topic Create(
         TopicId id, string title, DateTime eventStart, string summary,
         string topicType, Location location)

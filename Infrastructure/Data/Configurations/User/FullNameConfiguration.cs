@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Data.Configurations;
+﻿namespace Infrastructure.Data.Configurations.User;
 
 public class FullNameConfiguration : IEntityTypeConfiguration<CustomIdentityUser>
 {

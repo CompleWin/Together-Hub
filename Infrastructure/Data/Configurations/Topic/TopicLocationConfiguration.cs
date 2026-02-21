@@ -1,8 +1,8 @@
-﻿namespace Infrastructure.Data.Configurations;
+﻿namespace Infrastructure.Data.Configurations.Topic;
 
-public class TopicLocationConfiguration : IEntityTypeConfiguration<Topic>
+public class TopicLocationConfiguration : IEntityTypeConfiguration<Domain.Models.Topic>
 {
-    public void Configure(EntityTypeBuilder<Topic> builder)
+    public void Configure(EntityTypeBuilder<Domain.Models.Topic> builder)
     {
         builder.OwnsOne(topic => topic.Location,
             location =>
