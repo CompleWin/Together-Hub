@@ -20,8 +20,18 @@ public class DeleteTopicHandler(IApplicationDbContext dbContext)
             throw new TopicNotFoundException(request.TopicId);
         }
 
+        var relationships = await dbContext.Relationships
+            .Where(r => r.TopicReference == topicId)
+            .ToListAsync(ct);
+
+        foreach (var relationship in relationships)
+        {
+            relationship.IsDeleted = true;
+            relationship.DeletedAt = DateTimeOffset.Now;
+        }
+        
         topic.IsDeleted = true;
-        topic.DeletedAt = DateTime.UtcNow;
+        topic.DeletedAt = DateTimeOffset.UtcNow;
 
         await dbContext.SaveChangesAsync(ct);
         
