@@ -1,4 +1,5 @@
-﻿using Application.Topics.Dtos;
+﻿using Application.Topics.Commands.JoinLeaveTopic;
+using Application.Topics.Dtos;
 
 namespace Api.Controllers;
 
@@ -42,5 +43,10 @@ public class TopicsController(IMediator mediator) : ControllerBase
     {
         return Results.Ok(await mediator.Send(new DeleteTopicCommand(id), ct));
     }
-    
+
+    [HttpPost("join/{id}")]
+    public async Task<IResult> JoinTopic(Guid id, CancellationToken ct)
+    {
+        return Results.Ok(await mediator.Send(new JoinLeaveTopicCommand(id), ct));
+    }
 }
