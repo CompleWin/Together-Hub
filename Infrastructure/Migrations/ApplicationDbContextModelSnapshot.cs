@@ -312,7 +312,7 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("AuthorId");
 
                     b.HasOne("Domain.Models.Topic", "CurrentTopic")
-                        .WithMany()
+                        .WithMany("Comments")
                         .HasForeignKey("CurrentTopicId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -452,6 +452,8 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Models.Topic", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("Users");
                 });
 

@@ -11,6 +11,7 @@ public class Topic : Entity<TopicId>
     public bool IsVoided { get; set; } = false;
     
     public List<Relationship> Users { get; set; } = new();
+    public List<Comment> Comments { get; set; } = new();
     
     public static Topic Create(
         TopicId id, string title, DateTime eventStart, string summary,

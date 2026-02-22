@@ -14,6 +14,8 @@ public class GetTopicHandler(IApplicationDbContext dbContext, IMapper mapper)
             .Topics
             .Include(t => t.Users)
             .ThenInclude(c => c.CurrentUser)
+            .Include(t => t.Comments)
+            .ThenInclude(c => c.Author)
             .FirstOrDefaultAsync(t => t.Id == topicId, ct);
 
         if (topic is null || topic.IsDeleted)

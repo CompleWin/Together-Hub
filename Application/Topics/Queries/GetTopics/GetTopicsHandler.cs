@@ -13,6 +13,8 @@ public class GetTopicsHandler(IApplicationDbContext dbContext, IMapper mapper)
             .AsNoTracking()
             .Include(t => t.Users)
             .ThenInclude(c => c.CurrentUser)
+            .Include(c => c.Comments)
+            .ThenInclude(c => c.Author)
             .Where(t => !t.IsDeleted)
             .Select(t => mapper.Map<Topic, TopicResponseDto>(t))
             .ToListAsync(ct);

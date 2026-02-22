@@ -23,6 +23,7 @@ public static class TopicExtensions
                 Fullname = r.CurrentUser.FullName.ToString(),
                 Role = r.Role.ToString()
             }).ToList(),
+            Comments: null,
             IsVoided: topic.IsVoided
         );
     }

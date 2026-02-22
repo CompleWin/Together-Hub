@@ -1,4 +1,6 @@
-﻿namespace Application.Topics.Dtos;
+﻿using Application.Comments.Dtos;
+
+namespace Application.Topics.Dtos;
 
 public record TopicResponseDto(
     Guid Id,
@@ -8,5 +10,6 @@ public record TopicResponseDto(
     LocationDto Location,
     DateTime? EventStart,
     List<UserProfileDto> Users,
+    List<CommentDto> Comments,
     bool IsVoided
 );
