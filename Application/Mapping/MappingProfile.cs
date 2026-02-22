@@ -1,4 +1,5 @@
-﻿using Application.Security.Dtos;
+﻿using Application.Comments.Dtos;
+using Application.Security.Dtos;
 using Application.Topics.Dtos;
 
 namespace Application.Mapping;
@@ -56,6 +57,13 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.UserReference, opt => opt.MapFrom(src => src.UserReference))
             .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role));
 
+
+        CreateMap<Comment, CommentDto>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id.Value.ToString()))
+            .ForMember(dest => dest.Text, opt => opt.MapFrom(src => src.Text))
+            .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Author.UserName.ToString()))
+            .ForMember(dest => dest.Fullname, opt => opt.MapFrom(src => src.Author.FullName.ToString()))
+            .ForMember(dest => dest.CreateAt, opt => opt.MapFrom(src => src.CreateAt));
 
     }
 }
