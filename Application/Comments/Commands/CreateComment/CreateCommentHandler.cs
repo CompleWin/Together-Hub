@@ -1,6 +1,7 @@
 ﻿using Application.Comments.Dtos;
 using Application.Exceptions;
 using Application.Security.Services;
+using Domain.Exceptions.CommentException;
 using Domain.Exceptions.TopicException;
 using Domain.Exceptions.UserExceptions;
 
@@ -17,7 +18,7 @@ public class CreateCommentHandler(IApplicationDbContext dbContext,
             .Topics
             .FindAsync([topicId], ct);
 
-        if (topic is null || topic.IsVoided || topic.IsDeleted)
+        if (topic is null || topic.IsDeleted)
         {
             throw new TopicNotFoundException(request.TopicId);
         }
@@ -39,13 +40,14 @@ public class CreateCommentHandler(IApplicationDbContext dbContext,
             DateTime.Now,
             request.RequestDto.Text
         );
+        
         await dbContext.Comments.AddAsync(comment, ct);
-        var result = await dbContext.SaveChangesAsync(ct) > 0;
+        var success = await dbContext.SaveChangesAsync(ct) > 0;
 
-        if (result)
+        if (success)
         {
-            var response = mapper.Map<CommentDto>(comment);
-            return new CreateCommentResult(response);
+            var result = mapper.Map<CommentDto>(comment);
+            return new CreateCommentResult(result);
         }
 
         throw new CreateCommentException(topicId.Value, user.Id);

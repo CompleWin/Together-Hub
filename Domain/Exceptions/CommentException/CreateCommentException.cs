@@ -1,4 +1,4 @@
-﻿namespace Application.Exceptions;
+﻿namespace Domain.Exceptions.CommentException;
 
 public class CreateCommentException : CommentException
 {
