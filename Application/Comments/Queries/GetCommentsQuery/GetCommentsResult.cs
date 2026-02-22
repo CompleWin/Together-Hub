@@ -2,4 +2,4 @@
 
 namespace Application.Comments.Queries.GetCommentsQuery;
 
-public record GetCommentsResult(List<CommentDto> Comments);
+public record GetCommentsResult(IEnumerable<CommentDto> Comments);
